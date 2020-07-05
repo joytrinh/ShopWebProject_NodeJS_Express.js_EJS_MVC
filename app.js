@@ -18,13 +18,15 @@ const errorController = require("./controllers/error");
 const shopController = require('./controllers/shop');
 const isAuth = require('./middleware/is-auth');
 const User = require("./models/user");
-
-const MONGODB_URI =
-  `mongodb+srv://${process.env.MONGO_USER}:${
-    process.env.MONGO_PASSWORD}
-    @cluster0-7dvwp.azure.mongodb.net/${
-      process.env.MONGO_DEFAULT_DATABASE}
-      ?authSource=admin&replicaSet=Cluster0-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true`;
+const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${
+      process.env.MONGO_PASSWORD}@cluster0-7dvwp.azure.mongodb.net/${
+              process.env.MONGO_DEFAULT_DATABASE}`
+// const MONGODB_URI =
+//   `mongodb+srv://${process.env.MONGO_USER}:${
+//     process.env.MONGO_PASSWORD}
+//     @cluster0-7dvwp.azure.mongodb.net/${
+//       process.env.MONGO_DEFAULT_DATABASE}
+//       ?authSource=admin&replicaSet=Cluster0-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true`;
 const app = express();
 const store = new MongoDBStore({
   uri: MONGODB_URI,
