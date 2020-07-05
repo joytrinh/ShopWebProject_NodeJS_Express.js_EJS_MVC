@@ -1,0 +1,28 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/css/forms.css">
+    <link rel="stylesheet" href="/css/css/auth.css">
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <% if(errMessage) { %>
+            <div class="user-message user-message--error"><%= errMessage %></div>
+        <% } %>    
+        <form class="login-form" action="/reset" method="POST">
+            <div class="form-control">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email">
+            </div>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">            
+            <button class="btn" type="submit">Reset Password</button>
+        </form>
+    </main>
+<%- include('../includes/end.ejs') %>
+
+<!-- Now for that, we need to first of all create a unique token that also has some expiry date 
+    which we will store in our database so that the link which we didn't click includes that token
+     and we can verify that the user did get that link from us because if we just let the 
+     user now change that password, we got no security mechanism in place, so we need that token
+      to put it into the email we're about to send to only let users change the password through 
+      the email that contains that token, that's an additional security mechanism. -->
